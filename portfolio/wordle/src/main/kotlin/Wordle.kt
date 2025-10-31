@@ -20,8 +20,7 @@ fun readWordList(filename: String): MutableList<String> {
 
 fun pickRandomWord(words: MutableList<String>): String {
     val randomWordIndex = Random.nextInt(words.size)
-    return words[randomWordIndex]
-
+    return words.removeAt(randomWordIndex)
 }
 
 fun obtainGuess(attempt: Int): String {

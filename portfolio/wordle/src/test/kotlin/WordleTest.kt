@@ -1,12 +1,37 @@
 import io.kotest.assertions.withClue
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.collections.shouldNotContain
+
 import java.io.File
 
 @Suppress("unused")
 class WordleTest : StringSpec({
     // Write your tests here
 
+    "picks a random word from a list and returns it" {
+        val words = mutableListOf("hasan", "nasah", "hoque")
+        val randWord = pickRandomWord(words)
+        
+        
+        withClue("returned word should be from original list") {
+            listOf("hasan", "nasah", "hoque").contains(randWord) shouldBe true
+         }
+         
+         withClue("Returned word should be removed from list") {
+            words shouldNotContain randWord
+          }
+    }
+
+    "list with only one element" {
+        val words = mutableListOf("hasan")
+        val randWord = pickRandomWord(words)
+
+        randWord shouldBe "hasan"
+        words.size shouldBe 0
+    }    
+    
+    
     "returns true if given word 5 letters" {
         withClue("word = hasan") {isValid("hasan") shouldBe true}
         withClue("word = neroo") {isValid("neroo") shouldBe true}
@@ -42,11 +67,11 @@ class WordleTest : StringSpec({
 
         val result = readWordList(tempFile.absolutePath)
 
-        withClue("The function should return all lines as a mutable list") {
+        withClue("the function should return all lines as a mutable list") {
             result shouldBe mutableListOf("apple", "brain", "chair", "doubt", "eager")
         }
 
-        // Cleanup
+        
         tempFile.deleteOnExit()
     }
 
@@ -56,5 +81,8 @@ class WordleTest : StringSpec({
 
         }
     }
+
+
+ 
 
 })
