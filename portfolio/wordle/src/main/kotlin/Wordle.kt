@@ -38,18 +38,16 @@ fun obtainGuess(attempt: Int): String {
 
 fun evaluateGuess(guess: String, target: String): List<Int> {
     val comparisons = mutableListOf<Int>()
-    for(n in 0..4){
+    for (n in 0..4) {
         if (guess[n] == target[n]) {
-            comparisons[n] == 1
-        } else{
-            comparisons[n] == 0
+            comparisons.add(1)
+        } else {
+            comparisons.add(0)
         }
     }
-
     return comparisons
-
-
 }
+
 
 
 fun displayGuess(guess: String, matches: List<Int>) {

@@ -3,6 +3,7 @@ import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.collections.shouldNotContain
 
+
 import java.io.File
 
 @Suppress("unused")
@@ -79,6 +80,38 @@ class WordleTest : StringSpec({
         val invalidPath = "error_file.txt"
         val exception = kotlin.runCatching {
 
+        }
+    }
+
+    "returns correct/expected match list when comparing guess and target" {
+        val guess = "hasan"
+        val target = "hsdan"
+        val result = evaluateGuess(guess, target)
+
+        val expected = listOf(1,0,0,1,1)
+
+        withClue("returns correct/expected match list when comparing guess and target") {
+            result shouldBe expected
+        }
+    }
+
+    "returns all 1s when guess and target are identical" {
+        val guess = "brain"
+        val target = "brain"
+        val result = evaluateGuess(guess, target)
+        
+        withClue("returns all 1s when guess and target are identical") {
+            result shouldBe listOf(1, 1, 1, 1, 1)
+        }
+    }
+
+    "returns all 0s when no letters match in position" {
+        val guess = "house"
+        val target = "train"
+        val result = evaluateGuess(guess, target)
+        
+        withClue("returns all 0s when no letters match in position") {
+            result shouldBe listOf(0, 0, 0, 0, 0)
         }
     }
 
