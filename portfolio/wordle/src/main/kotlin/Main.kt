@@ -1,10 +1,13 @@
 fun main() {
 
+    println("Starting program...")
+
     //read all the words from file 
-    val words = readWordList("portfolio/wordle/data/words.txt")
+    val words = readWordList("/workspaces/comp2850-oop-work/portfolio/wordle/data/words.txt")
 
     //pick a random word that will be guessed
     val chosenWord = pickRandomWord(words)
+     println("Chosen word: $chosenWord")
 
     println("guess a 5 letter word. You have 10 attempts")
 
@@ -17,12 +20,14 @@ fun main() {
 
         //check if all the characters match the chosen word 
         if (matches.all  {it ==1}) {
-            println("you guessed $chosenWord in $attempts goes")
+            println("you guessed in $attempts goes")
             return
         }
 
-        attempts = attempts + 1
+        attempts ++
 
     }
+
+    println("out of attempts")
 
 }

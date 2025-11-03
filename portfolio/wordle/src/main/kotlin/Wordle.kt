@@ -24,8 +24,8 @@ fun pickRandomWord(words: MutableList<String>): String {
 }
 
 fun obtainGuess(attempt: Int): String {
+    println("attempt: $attempt")
     while(true) {
-        println("attempt: $attempt")
         val userInput = readln()
         if (isValid(userInput)) {
             return userInput
@@ -38,8 +38,10 @@ fun obtainGuess(attempt: Int): String {
 
 fun evaluateGuess(guess: String, target: String): List<Int> {
     val comparisons = mutableListOf<Int>()
+    val lowerCaseGuess = guess.lowercase()//converting to lowercase for comparison as words in words.txt are all upper case
+    val lowerCaseTarget = target.lowercase()//converting to lowercase for comparison as words in words.txt are all upper case
     for (n in 0..4) {
-        if (guess[n] == target[n]) {
+        if (lowerCaseGuess[n] == lowerCaseTarget[n]) {
             comparisons.add(1)
         } else {
             comparisons.add(0)
