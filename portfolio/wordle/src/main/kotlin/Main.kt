@@ -6,16 +6,16 @@ fun main() {
 
     //pick a random word that will be guessed
     val chosenWord = pickRandomWord(words)
-    println(chosenWord)
+   
 
     println("guess a 5 letter word. You have 10 attempts")
 
-    var attempts = 1
-    while (attempts <= 10) {
-        val guess = obtainGuess(attempts)
-        val matches = evaluateGuess(guess, chosenWord)
+    var attempts = 1//number of guesses 
+    while (attempts <= 10) {//user has a maximum of 10 guesses 
+        val guess = obtainGuess(attempts)// ask for a guess. will keep guessing until a valid guess is given
+        val matches = evaluateGuess(guess, chosenWord)//guess is compared with the word. will be stored in this variable
 
-        displayGuess(guess, matches)
+        displayGuess(guess, matches)//print matching/not matching letters 
 
         //check if all the characters match the chosen word 
         if (0 !in matches){
@@ -23,7 +23,7 @@ fun main() {
             return
         }
 
-        attempts ++
+        attempts ++//increment attempts if they havent guessed correctly 
 
     }
 
